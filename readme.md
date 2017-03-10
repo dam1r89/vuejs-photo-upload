@@ -19,7 +19,7 @@ Value is current image preview (if image is already uploaded)
 Example how to upload photo, or other way is to serialize file with base64.
 
 ```javascript
-uploadLogo(file){
+handleFileUpload(file){
     let form = new FormData();
     form.append('photo', file);
 
@@ -32,8 +32,3 @@ uploadLogo(file){
 },
 ```
 
-Ideas from [here](http://stackoverflow.com/questions/25092981/drag-drop-images-input-file-and-preview-before-upload) and [here](https://css-tricks.com/drag-and-drop-file-uploading).
-
-Json file upload [here](http://stackoverflow.com/questions/4083702/posting-a-file-and-data-to-restful-webservice-as-json)
-
-Drag and drop [reference](https://developer.mozilla.org/en-US/docs/Web/Events/dragenter) and [support](http://caniuse.com/#feat=dragndrop) 
