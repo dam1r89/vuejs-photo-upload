@@ -1,15 +1,15 @@
 <template>
-  <div class="photo-upload">
+  <div class="photo-upload" :class="disabled ? 'disabled' : 'enabled'">
     <div class="uploader" :class="{hovering: hovering}" :style="{backgroundImage: backgroundImage}" ref="uploader">
-      <span v-show="!(value || preview)" class="upload-instructions">
+      <span v-show="!(value || preview)" class="upload-instructions" style="color: black;">
         Click or drag
         <br>
-        here image
+        image here
         <br>
-        for upload
+        to upload...
       </span>
       <input class="file-photo" type="file" @change="handleImage" @dragenter="hovering = true"
-             @dragleave="hovering = false"/>
+             @dragleave="hovering = false" :disabled="disabled"/>
     </div>
   </div>
 </template>
@@ -27,11 +27,11 @@
     border: 2px dashed #e8e8e8;
   }
 
-  .uploader.hovering {
+  .enabled .uploader.hovering {
     background-color: #bbb;
   }
 
-  .uploader:hover {
+  .enabled .uploader:hover {
     background-color: skyblue;
   }
 
@@ -51,6 +51,8 @@
     left: 0;
     z-index: 2;
     opacity: 0;
+  }
+  .enabled .file-photo {
     cursor: pointer;
   }
 
@@ -66,13 +68,17 @@
 </style>
 
 <script>
-
     export default {
-        props: ['value'],
+        props: ['value', 'disabled'],
         methods: {
             handleImage(event) {
-
+                if (this.disabled) {
+                  return;
+                }
                 let files = event.target.files;
+                if (files.length === 0){
+                  return;
+                }
                 let reader = new FileReader();
                 reader.onload = (event) => {
                     this.preview = event.target.result;
@@ -98,5 +104,4 @@
             }
         }
     }
-    
 </script>
