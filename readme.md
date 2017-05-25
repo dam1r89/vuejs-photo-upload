@@ -14,6 +14,8 @@ and
 <photo-upload @input="handleFileUpload" :value="value"></photo-upload>
 ```
 
+Optional parameter `disabled` to enable/disable compnent.
+
 Value is current image preview (if image is already uploaded)
 
 Example how to upload photo, or other way is to serialize file with base64.
